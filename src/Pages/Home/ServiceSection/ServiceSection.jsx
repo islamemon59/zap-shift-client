@@ -45,10 +45,10 @@ const ServiceSection = () => {
   ];
 
   return (
-    <section className="my-20">
+    <section className="max-w-6xl mx-auto p-6 my-20">
       {/* Section header */}
       <header className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-extrabold">Our Services</h2>
+        <h2 className="text-3xl md:text-4xl text-accent font-extrabold">Our Services</h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-600">
           Enjoy fast, reliable parcel delivery with real‑time tracking and zero
           hassle. From personal packages to business shipments — we deliver on
