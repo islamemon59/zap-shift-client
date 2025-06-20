@@ -45,7 +45,7 @@ export default function ClientLogoSlider({ logos }) {
           <img
             src={logo}
             alt={`Client logo ${idx + 1}`}
-            className="mx-auto h-20 object-contain"
+            className="h-20 object-contain mx-96"
             loading="lazy"
           />
         </div>

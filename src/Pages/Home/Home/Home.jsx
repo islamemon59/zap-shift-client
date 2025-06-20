@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../Banner/Banner';
 import ServiceSection from '../ServiceSection/ServiceSection';
 import ClientsSection from '../ClientSection/ClientSection';
+import BenefitsSection from '../Benefits/BenefitsSection';
 
 const Home = () => {
     return (
@@ -18,6 +19,10 @@ const Home = () => {
 
             <section>
                 <ClientsSection></ClientsSection>
+            </section>
+
+            <section>
+                <BenefitsSection></BenefitsSection>
             </section>
         </div>
     );
