@@ -17,7 +17,7 @@ const BenefitCard = ({ item }) => {
 
       {/* Right image */}
       <div>
-        <h3 className="text-xl font-bold mb-2 text-accent">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 text-primary">{title}</h3>
         <p>{desc}</p>
       </div>
     </div>
