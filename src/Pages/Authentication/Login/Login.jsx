@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import AuthHook from "../../../Hooks/AuthHook/AuthHook";
+import { Link } from "react-router";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+  const { signInUser } = AuthHook();
   const {
     register,
     handleSubmit,
@@ -10,21 +14,32 @@ const Login = () => {
 
   const onsubmit = (data) => {
     console.log(data);
+
+    signInUser(data.email, data.password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
-    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-base-100 w-full max-w-sm shrink-0">
       <div className="card-body">
-        <h1 className="text-4xl text-center text-primary font-bold">
-          Login now!
+        <h1 className="text-4xl text-start text-primary font-bold">
+          Welcome Back
         </h1>
+        <p className="text-lg text-primary-content">Login with Profast</p>
         <form onSubmit={handleSubmit(onsubmit)}>
           <fieldset className="fieldset">
-            <label className="label">Email</label>
+            <label className="label font-bold text-primary-content">
+              Email
+            </label>
             <input
               type="email"
               {...register("email", { required: true })}
-              className="input"
+              className="input w-full mb-2"
               placeholder="Email"
             />
             {errors.password?.type === "required" && (
@@ -32,11 +47,13 @@ const Login = () => {
                 This field is required
               </span>
             )}
-            <label className="label">Password</label>
+            <label className="label font-bold text-primary-content">
+              Password
+            </label>
             <input
               type="password"
               {...register("password", { required: true, minLength: 6 })}
-              className="input"
+              className="input w-full"
               placeholder="Password"
             />
             {errors.password?.type === "required" && (
@@ -52,7 +69,19 @@ const Login = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn btn-neutral mt-4">Login</button>
+            <button className="btn btn-secondary text-primary-content mt-4">
+              Login
+            </button>
+            <Link
+              to="/register"
+              className="text-primary-content text-[15px] mt-2"
+            >
+              Don't have an account?{" "}
+              <span className="text-secondary cursor-pointer hover:underline">
+                Register
+              </span>
+            </Link>
+            <SocialLogin />
           </fieldset>
         </form>
       </div>

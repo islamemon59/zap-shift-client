@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
 
 const Header = () => {
@@ -42,13 +42,20 @@ const Header = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl"><ProFastLogo/></a>
+        <Link to="/" className="btn btn-ghost text-xl cursor-pointer">
+          <ProFastLogo />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link
+          to="/login"
+          className="btn btn-outline btn-secondary text-primary-content"
+        >
+          Sign In
+        </Link>
       </div>
     </div>
   );
