@@ -5,6 +5,7 @@ import ClientsSection from "../ClientSection/ClientSection";
 import BenefitsSection from "../Benefits/BenefitsSection";
 import BeMerchant from "../BeMerchant/BeMerchant";
 import HowItWorks from "../HowItWorks/HowItWorks";
+import FeedbackData from "../CustomerFeedback/FeedbackData";
 
 const Home = () => {
   return (
@@ -32,6 +33,10 @@ const Home = () => {
       {/* Be Merchant Section */}
       <section>
         <BeMerchant />
+      </section>
+      {/* Client Slider Section */}
+      <section>
+        <FeedbackData/>
       </section>
     </div>
   );
