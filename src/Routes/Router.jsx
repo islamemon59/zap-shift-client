@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
                 path: "coverage",
                 Component: Coverage,
                 hydrateFallbackElement: <Loader/>,
-                loader: () => fetch("/coverageData.json")
+                loader: () => fetch("./coverageData.json")
             }
         ]
     },
