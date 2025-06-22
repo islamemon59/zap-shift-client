@@ -4,8 +4,8 @@ import loader from '../../../../loader.json'
 
 const Loader = () => {
     return (
-        <div>
-            <Lottie animationData={loader} loop={true}></Lottie>
+        <div className=''>
+            <Lottie style={{width: "100px"}} animationData={loader} loop={true}></Lottie>
         </div>
     );
 };

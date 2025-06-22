@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router";
-import MainLayout from "./Layout/MainLayout";
 import Home from "../Pages/Home/Home/Home";
-import AuthLayout from "./Layout/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
+import Coverage from "../Pages/Coverage/Coverage";
+import MainLayout from "../Layout/MainLayout";
+import AuthLayout from "../Layout/AuthLayout";
+import Loader from "../Pages/Home/Shared/Loader/Loader";
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +15,12 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: "coverage",
+                Component: Coverage,
+                hydrateFallbackElement: <Loader/>,
+                loader: () => fetch("/coverageData.json")
             }
         ]
     },

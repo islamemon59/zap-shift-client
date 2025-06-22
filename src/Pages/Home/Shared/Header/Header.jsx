@@ -9,6 +9,9 @@ const Header = () => {
         <NavLink to="/home">Home</NavLink>
       </li>
       <li>
+        <NavLink to="/coverage">Coverage</NavLink>
+      </li>
+      <li>
         <NavLink to="/about">About Us</NavLink>
       </li>
     </>
@@ -42,20 +45,13 @@ const Header = () => {
             {links}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl cursor-pointer">
-          <ProFastLogo />
-        </Link>
+        <div className="btn btn-ghost text-xl"><ProFastLogo/></div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link
-          to="/login"
-          className="btn btn-outline btn-secondary text-primary-content"
-        >
-          Sign In
-        </Link>
+        <Link to="/login" className="btn btn-outline btn-secondary text-primary-content">Sign In</Link>
       </div>
     </div>
   );
