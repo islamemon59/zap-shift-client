@@ -1,11 +1,32 @@
 import React from "react";
+import AuthHook from "../../../Hooks/AuthHook/AuthHook";
+import { useLocation, useNavigate } from "react-router";
 
 const SocialLogin = () => {
+  const { signInWithGoogle } = AuthHook();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+
+  const handleSocialLogin = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res);
+        navigate(from);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="space-y-3 text-center mt-1">
-        <p>Or</p>
+      <p>Or</p>
       {/* Google */}
-      <button className="btn bg-white text-black border-[#e5e5e5] w-full">
+      <button
+        onClick={handleSocialLogin}
+        className="btn bg-white text-black border-[#e5e5e5] w-full"
+      >
         <svg
           aria-label="Google logo"
           width="16"

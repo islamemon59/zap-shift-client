@@ -2,11 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Register = () => {
-
-  const {createUser} = AuthHook()
+  const { createUser } = AuthHook();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
 
   const {
     register,
@@ -17,11 +19,13 @@ const Register = () => {
   const onsubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
-    .then(res => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error.message);
-    })
+      .then((res) => {
+        console.log(res);
+        navigate(from);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -33,7 +37,9 @@ const Register = () => {
         <p className="text-lg text-primary-content">Register with Profast</p>
         <form autoComplete="off" onSubmit={handleSubmit(onsubmit)}>
           <fieldset className="fieldset">
-            <label className="label font-bold text-primary-content">Email</label>
+            <label className="label font-bold text-primary-content">
+              Email
+            </label>
             <input
               autoComplete="off"
               type="email"
@@ -46,7 +52,9 @@ const Register = () => {
                 This field is required
               </span>
             )}
-            <label className="label font-bold text-primary-content">Password</label>
+            <label className="label font-bold text-primary-content">
+              Password
+            </label>
             <input
               autoComplete="off"
               type="password"
@@ -85,9 +93,16 @@ const Register = () => {
                 {errors.password.message}
               </p>
             )}
-            <button className="btn btn-secondary text-primary-content mt-4">Register</button>
-            <Link to="/login" className="text-primary-content text-[15px] mt-2">Already have an account? <span className="text-secondary cursor-pointer hover:underline">Login</span></Link>
-            <SocialLogin/>
+            <button className="btn btn-secondary text-primary-content mt-4">
+              Register
+            </button>
+            <Link to="/login" className="text-primary-content text-[15px] mt-2">
+              Already have an account?{" "}
+              <span className="text-secondary cursor-pointer hover:underline">
+                Login
+              </span>
+            </Link>
+            <SocialLogin />
           </fieldset>
         </form>
       </div>

@@ -4,7 +4,7 @@ import ProFastLogo from "../ProFastLogo/ProFastLogo";
 import AuthHook from "../../../../Hooks/AuthHook/AuthHook";
 
 const Header = () => {
-  const { user } = AuthHook();
+  const { user, signOutUser } = AuthHook();
   const links = (
     <>
       <li>
@@ -28,6 +28,15 @@ const Header = () => {
       </li>
     </>
   );
+
+  const handleLogout = () => {
+    signOutUser()
+    .then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
 
   return (
     <div className="navbar shadow-sm">
@@ -65,12 +74,16 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link
-          to="/login"
-          className="btn btn-outline btn-secondary text-primary-content"
-        >
-          Sign In
-        </Link>
+        {user ? (
+          <button className="btn btn-outline btn-secondary text-primary-content" onClick={handleLogout}>Logout</button>
+        ) : (
+          <Link
+            to="/login"
+            className="btn btn-secondary text-primary-content"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );
