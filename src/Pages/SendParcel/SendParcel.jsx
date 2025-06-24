@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2"; // ✅ ADDED
 import AuthHook from "../../Hooks/AuthHook/AuthHook";
+import UseAxiosSecure from "../../Hooks/AxiosSecure/UseAxiosSecure";
 
 const AddParcelForm = ({ loggedInUser }) => {
   const [cost, setCost] = useState(null);
   const { user } = AuthHook();
+  const axiosSecure = UseAxiosSecure();
 
   const {
     register,
@@ -102,9 +105,19 @@ const AddParcelForm = ({ loggedInUser }) => {
       ...data,
       creation_date: new Date().toISOString(),
       cost: deliveryCost,
-      senderInfo: user?.email, 
+      payment_status: "unpaid",
+      delivery_status: "not_collected",
+      senderInfo: user?.email,
       tracking_id: trackingId, // ✅ Added tracking ID
     };
+
+    try {
+      const { data } = await axiosSecure.post("parcels", formData);
+      console.log(data);
+    } catch (err) {
+      console.log(err.message);
+      toast(err.message)
+    }
 
     console.log("✅ Final Parcel Data:", formData);
 
