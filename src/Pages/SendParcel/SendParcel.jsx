@@ -107,7 +107,7 @@ const AddParcelForm = ({ loggedInUser }) => {
       cost: deliveryCost,
       payment_status: "unpaid",
       delivery_status: "not_collected",
-      senderInfo: user?.email,
+      senderEmail: user?.email,
       tracking_id: trackingId, // ✅ Added tracking ID
     };
 

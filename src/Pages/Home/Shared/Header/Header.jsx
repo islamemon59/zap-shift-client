@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
+import AuthHook from "../../../../Hooks/AuthHook/AuthHook";
 
 const Header = () => {
+  const { user } = AuthHook();
   const links = (
     <>
       <li>
@@ -14,6 +16,13 @@ const Header = () => {
       <li>
         <NavLink to="/sendParcel">Send Parcel</NavLink>
       </li>
+
+      {user && (
+        <li>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </li>
+      )}
+
       <li>
         <NavLink to="/about">About Us</NavLink>
       </li>
@@ -48,13 +57,20 @@ const Header = () => {
             {links}
           </ul>
         </div>
-        <div className="btn btn-ghost text-xl"><ProFastLogo/></div>
+        <div className="btn btn-ghost text-xl">
+          <ProFastLogo />
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn btn-outline btn-secondary text-primary-content">Sign In</Link>
+        <Link
+          to="/login"
+          className="btn btn-outline btn-secondary text-primary-content"
+        >
+          Sign In
+        </Link>
       </div>
     </div>
   );
