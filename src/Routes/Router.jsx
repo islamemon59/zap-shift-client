@@ -28,6 +28,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "sendParcel",
+        hydrateFallbackElement: <Loader />,
+        loader: () => fetch("./coverageData.json"),
         element: (
           <PrivateRoute>
             <SendParcel></SendParcel>

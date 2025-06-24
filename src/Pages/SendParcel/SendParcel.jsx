@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2"; // ✅ ADDED
 import AuthHook from "../../Hooks/AuthHook/AuthHook";
 import UseAxiosSecure from "../../Hooks/AxiosSecure/UseAxiosSecure";
+import { useLoaderData } from "react-router";
 
 const AddParcelForm = ({ loggedInUser }) => {
   const [cost, setCost] = useState(null);
@@ -24,26 +25,11 @@ const AddParcelForm = ({ loggedInUser }) => {
   const receiverRegion = watch("receiverRegion");
   const weight = Number(watch("weight")) || 0;
 
-  const regions = [
-    "Dhaka",
-    "Chattogram",
-    "Rajshahi",
-    "Khulna",
-    "Sylhet",
-    "Barisal",
-    "Rangpur",
-    "Mymensingh",
-  ];
+  const warHouseData = useLoaderData();
 
-  const serviceCenters = [
-    "Dhaka Hub",
-    "Chattogram Central",
-    "Rajshahi Depot",
-    "Khulna Point",
-    "Sylhet Spot",
-    "Barisal Unit",
-    "Rangpur Stop",
-    "Mymensingh Node",
+  const uniqueRegions = [...new Set(warHouseData.map((item) => item.region))];
+  const uniqueDistrict = [
+    ...new Set(warHouseData.map((item) => item.district)),
   ];
 
   const calculateCost = (data) => {
@@ -61,6 +47,7 @@ const AddParcelForm = ({ loggedInUser }) => {
   };
 
   const onSubmit = async (data) => {
+    console.log(data);
     const deliveryCost = calculateCost(data);
     setCost(deliveryCost);
 
@@ -72,7 +59,7 @@ const AddParcelForm = ({ loggedInUser }) => {
         <p><strong>From:</strong> ${data.senderRegion} → <strong>To:</strong> ${
         data.receiverRegion
       }</p>
-        <p><strong>Weight:</strong> ${data.weight || "-"} kg</p>
+        <p><strong>Weight:</strong> ${data.weight || "0"} kg</p>
         <p><strong>Estimated Cost:</strong> ${deliveryCost}৳</p>
       `,
       showCancelButton: true,
@@ -116,7 +103,7 @@ const AddParcelForm = ({ loggedInUser }) => {
       console.log(data);
     } catch (err) {
       console.log(err.message);
-      toast(err.message)
+      toast(err.message);
     }
 
     console.log("✅ Final Parcel Data:", formData);
@@ -249,9 +236,9 @@ const AddParcelForm = ({ loggedInUser }) => {
                   className="select select-bordered w-full"
                 >
                   <option value="">Select Service Center</option>
-                  {serviceCenters.map((center) => (
-                    <option key={center} value={center}>
-                      {center}
+                  {uniqueDistrict.map((district) => (
+                    <option key={district} value={district}>
+                      {district}
                     </option>
                   ))}
                 </select>
@@ -266,7 +253,7 @@ const AddParcelForm = ({ loggedInUser }) => {
                   className="select select-bordered w-full"
                 >
                   <option value="">Select Region</option>
-                  {regions.map((region) => (
+                  {uniqueRegions.map((region) => (
                     <option key={region} value={region}>
                       {region}
                     </option>
@@ -337,9 +324,9 @@ const AddParcelForm = ({ loggedInUser }) => {
                   className="select select-bordered w-full"
                 >
                   <option value="">Select Service Center</option>
-                  {serviceCenters.map((center) => (
-                    <option key={center} value={center}>
-                      {center}
+                  {uniqueDistrict.map((district) => (
+                    <option key={district} value={district}>
+                      {district}
                     </option>
                   ))}
                 </select>
@@ -354,7 +341,7 @@ const AddParcelForm = ({ loggedInUser }) => {
                   className="select select-bordered w-full"
                 >
                   <option value="">Select Region</option>
-                  {regions.map((region) => (
+                  {uniqueRegions.map((region) => (
                     <option key={region} value={region}>
                       {region}
                     </option>
