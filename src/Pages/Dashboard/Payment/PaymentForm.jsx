@@ -82,6 +82,18 @@ const PaymentForm = () => {
       if (result.paymentIntent.status === "succeeded") {
         console.log("Payment succeeded!");
         console.log(result);
+        const paymentData = {
+          parcelId,
+          userEmail: user.email,
+          amount,
+          currency: result.paymentIntent.currency,
+          paymentMethod: result.paymentIntent.payment_method,
+          status: result.paymentIntent.status,
+          transactionId: result.paymentIntent.id
+        }
+
+        const {data} = await axiosSecure.post("payments", paymentData)
+        console.log(data);
       }
     }
   };
