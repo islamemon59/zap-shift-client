@@ -4,12 +4,19 @@ import { FaEye, FaTrash } from "react-icons/fa";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import Swal from "sweetalert2";
+import { MdOutlinePayments } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 const MyParcel = () => {
   const { user } = AuthHook();
+  const navigate = useNavigate()
   console.log(user.email);
   const axiosSecure = UseAxiosSecure();
-  const { data: parcels = [], isLoading, refetch } = useQuery({
+  const {
+    data: parcels = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-parcels", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`parcels?email=${user?.email}`);
@@ -40,7 +47,7 @@ const MyParcel = () => {
             Swal.fire("Deleted!", "Your parcel has been deleted.", "success");
             // OPTIONAL: Refetch or remove parcel from UI manually
           }
-          refetch()
+          refetch();
         } catch (error) {
           Swal.fire(
             "Error",
@@ -51,6 +58,10 @@ const MyParcel = () => {
       }
     });
   };
+
+  const handlePay = id => {
+    navigate(`/dashboard/payment/${id}`)
+  }
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
@@ -99,6 +110,9 @@ const MyParcel = () => {
                   <td className="flex gap-2">
                     <button className="btn btn-sm btn-info text-white">
                       <FaEye />
+                    </button>
+                    <button onClick={() => handlePay(parcel._id)} className="btn btn-sm btn-accent text-primary-content">
+                      <MdOutlinePayments />
                     </button>
                     <button
                       onClick={() => handleDelete(parcel?._id)}
