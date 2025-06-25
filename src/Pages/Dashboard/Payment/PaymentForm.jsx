@@ -1,33 +1,38 @@
+/* eslint-disable no-unused-vars */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
+import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 
 const PaymentForm = () => {
+  const {user} = AuthHook()
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState("")
-  const {parcelId} = useParams()
-  const axiosSecure = UseAxiosSecure()
+  const [error, setError] = useState("");
+  const { parcelId } = useParams();
+  const axiosSecure = UseAxiosSecure();
   console.log(parcelId);
 
-  const {data: parcelInfo, isLoading} = useQuery({
+  const { data: parcelInfo, isLoading } = useQuery({
     queryKey: ["parcel", parcelId],
     queryFn: async () => {
-        const {data} = await axiosSecure.get(`/parcel/${parcelId}`)
-        return data
-    }
-  })
+      const { data } = await axiosSecure.get(`/parcel/${parcelId}`);
+      return data;
+    },
+  });
 
   console.log(parcelInfo);
 
-  if(isLoading){
+  if (isLoading) {
     return;
   }
 
-  const amount = parcelInfo?.cost
+  const amount = parcelInfo?.cost;
+  const amountInCents = amount * 100;
+  console.log(amountInCents);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,20 +46,44 @@ const PaymentForm = () => {
       return;
     }
 
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-        type: "card",
-        card,
-    })
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
 
-    if(error){
-        toast(<p className="text-error">${error?.message}</p>)
-        setError(error.message)
-
+    if (error) {
+      toast(<p className="text-error">${error?.message}</p>);
+      setError(error.message);
     } else {
-        setError("")
-        console.log(paymentMethod);
+      setError("");
+      console.log(paymentMethod);
     }
 
+    // Create Payment Intent
+    const { data } = await axiosSecure.post("create-payment-intent", {
+      amountInCents,
+      parcelId,
+    });
+    const clientSecret = data.clientSecret;
+
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: user?.displayName,
+          email: user?.email
+        }
+      },
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    } else {
+      if (result.paymentIntent.status === "succeeded") {
+        console.log("Payment succeeded!");
+        console.log(result);
+      }
+    }
   };
 
   return (

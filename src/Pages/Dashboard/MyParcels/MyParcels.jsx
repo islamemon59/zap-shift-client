@@ -6,6 +6,7 @@ import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import Swal from "sweetalert2";
 import { MdOutlinePayments } from "react-icons/md";
 import { useNavigate } from "react-router";
+import Loader from "../../Home/Shared/Loader/Loader";
 
 const MyParcel = () => {
   const { user } = AuthHook();
@@ -26,7 +27,7 @@ const MyParcel = () => {
   console.log(parcels);
 
   if (isLoading) {
-    return;
+    return <Loader></Loader>
   }
 
   const handleDelete = (id) => {
