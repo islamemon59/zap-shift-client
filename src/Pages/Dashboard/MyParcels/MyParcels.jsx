@@ -10,7 +10,7 @@ import Loader from "../../Home/Shared/Loader/Loader";
 
 const MyParcel = () => {
   const { user } = AuthHook();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   console.log(user.email);
   const axiosSecure = UseAxiosSecure();
   const {
@@ -27,7 +27,7 @@ const MyParcel = () => {
   console.log(parcels);
 
   if (isLoading) {
-    return <Loader></Loader>
+    return <Loader></Loader>;
   }
 
   const handleDelete = (id) => {
@@ -60,9 +60,9 @@ const MyParcel = () => {
     });
   };
 
-  const handlePay = id => {
-    navigate(`/dashboard/payment/${id}`)
-  }
+  const handlePay = (id) => {
+    navigate(`/dashboard/payment/${id}`);
+  };
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
@@ -112,9 +112,14 @@ const MyParcel = () => {
                     <button className="btn btn-sm btn-info text-white">
                       <FaEye />
                     </button>
-                    <button onClick={() => handlePay(parcel._id)} className="btn btn-sm btn-accent text-primary-content">
-                      <MdOutlinePayments />
-                    </button>
+                    {parcel.payment_status == "unpaid" && (
+                      <button
+                        onClick={() => handlePay(parcel._id)}
+                        className="btn btn-sm btn-accent text-primary-content"
+                      >
+                        <MdOutlinePayments />
+                      </button>
+                    )}
                     <button
                       onClick={() => handleDelete(parcel?._id)}
                       className="btn btn-sm btn-error text-white"

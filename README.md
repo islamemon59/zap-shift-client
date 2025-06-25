@@ -1,12 +1,43 @@
-# React + Vite
+# 📦 ParcelSwift – Parcel Delivery Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ParcelSwift is a full-featured parcel delivery platform that allows users to create delivery orders, calculate delivery costs, and manage shipments across all 64 districts in Bangladesh. It supports role-based access for customers, delivery personnel, and admins to ensure a smooth and secure experience.
 
-Currently, two official plugins are available:
+## 🔗 Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Visit ParcelSwift Live](https://your-live-site-link.com)
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📋 **Parcel Booking Form:** Dynamic form to enter parcel, sender, and receiver information with real-time delivery cost calculation.
+- 🔐 **Authentication & Authorization:** Firebase Auth handles user login and signup. Protected routes ensure access control based on roles.
+- 🗺️ **District-wide Coverage:** Users can select from all 64 districts of Bangladesh for sender and receiver addresses.
+- 💰 **Dynamic Delivery Cost:** Delivery cost is automatically calculated based on parcel weight and distance.
+- 💳 **Stripe Integration:** Secure payment system with Stripe; after successful payment, `payment_status` is updated to `"paid"` and stored in a dedicated payment history collection.
+- 📂 **Admin Dashboard:** Admins can view and manage all parcels and payment histories, sorted by the latest entries.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, React Router, Tailwind CSS, DaisyUI
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (with native MongoDB driver)
+- **Authentication:** Firebase Authentication
+- **Payment Gateway:** Stripe
+- **State & Data Management:** Axios, React Hook Form
+- **Security:** JWT (JSON Web Token), CORS
+
+## 📁 Project Structure
+
+- `client/` – React front-end with form handling, protected routes, and Stripe Elements
+- `server/` – Express backend with REST APIs for parcel creation, payment handling, and admin controls
+- `collections:`  
+  - `parcelCollection` – Stores all parcel orders  
+  - `paymentHistory` – Stores payment method, transaction ID, ISO date, and related data
+
+## 💡 Future Improvements
+
+- 🗂️ Filter and sort options for parcel tracking  
+- 🔔 Notification system for delivery status updates  
+- 📱 PWA support for mobile users
+
+---
+
