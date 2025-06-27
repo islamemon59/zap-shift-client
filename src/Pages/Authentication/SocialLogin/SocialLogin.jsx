@@ -1,16 +1,33 @@
 import React from "react";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import { useLocation, useNavigate } from "react-router";
+import UseAxios from "../../../Hooks/AxiosSecure/UseAxios";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = AuthHook();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
+  const axiosInstance = UseAxios()
 
   const handleSocialLogin = () => {
     signInWithGoogle()
-      .then((res) => {
+      .then(async (res) => {
+        const result = res.user;
+        const userInfo = {
+          email: result.email,
+          role: "user",
+          created_at: new Date().toISOString(),
+          last_log_in: new Date().toISOString(),
+        };
+
+        try {
+          const { data } = await axiosInstance.post("users", userInfo);
+          console.log(data);
+        } catch (err) {
+          console.log(err.message);
+        }
+
         console.log(res);
         navigate(from);
       })
@@ -24,6 +41,7 @@ const SocialLogin = () => {
       <p>Or</p>
       {/* Google */}
       <button
+      type="button"
         onClick={handleSocialLogin}
         className="btn bg-white text-black border-[#e5e5e5] w-full"
       >
