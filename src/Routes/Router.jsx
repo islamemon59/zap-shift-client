@@ -13,6 +13,7 @@ import MyParcel from "../Pages/Dashboard/MyParcels/MyParcels";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import TrackParcel from "../Pages/Dashboard/TrackParcel/TrackParcel";
+import BeARider from "../Pages/Dashboard/BeARider/BeARider";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,16 @@ export const router = createBrowserRouter([
         Component: Coverage,
         hydrateFallbackElement: <Loader />,
         loader: () => fetch("./coverageData.json"),
+      },
+      {
+        path: "beARider",
+        hydrateFallbackElement: <Loader />,
+        loader: () => fetch("./coverageData.json"),
+        element: (
+          <PrivateRoute>
+            <BeARider></BeARider>
+          </PrivateRoute>
+        ),
       },
       {
         path: "sendParcel",
@@ -77,8 +88,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/trackParcel",
-        Component: TrackParcel
-      }
+        Component: TrackParcel,
+      },
     ],
   },
 ]);
