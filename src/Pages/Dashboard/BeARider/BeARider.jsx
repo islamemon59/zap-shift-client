@@ -1,41 +1,50 @@
-import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { getAuth } from "firebase/auth";
 import rider from "../../../assets/agent-pending.png";
 import { useLoaderData } from "react-router";
+import AuthHook from "../../../Hooks/AuthHook/AuthHook";
+import Swal from "sweetalert2";
+import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 
 const BeARider = () => {
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const data = useLoaderData();
-  console.log(data);
-
-  //   Demo dynamic data
-  //   const [regions] = useState(["Dhaka", "Chittagong", "Khulna", "Sylhet", "Rajshahi"]);
-  //   const [warehouses] = useState(["Dhaka Central", "Chittagong Hub", "Khulna Depot"]);
+  const { user } = AuthHook();
+  const axiosSecure = UseAxiosSecure();
 
   const regions = [...new Set(data.map((reg) => reg.region))];
   const warehouses = [...new Set(data.map((city) => city.city))];
 
-  useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
+  const onSubmit = async (data) => {
+    try {
+      // Add creation date & status from frontend (can also do in backend)
+      const riderData = {
+        ...data,
+        status: "pending",
+        creationDate: new Date().toISOString(),
+      };
 
-    if (user) {
-      setValue("name", user.displayName || "");
-      setValue("email", user.email || "");
+      const res = await axiosSecure.post("/riders", riderData);
+
+      if (res.data?.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Request Submitted!",
+          text: "Your request to become a rider is pending approval.",
+          confirmButtonColor: "#84cc16", // lime
+        });
+        console.log("Rider form data:", riderData);
+        reset();
+      }
+    } catch (error) {
+      console.error("Failed to submit rider data", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Failed to submit your request. Please try again later.",
+      });
     }
-  }, [setValue]);
-
-  const onSubmit = (data) => {
-    const finalData = {
-      ...data,
-      status: "pending",
-      creationDate: new Date().toISOString(),
-    };
-    console.log("Rider form data:", finalData);
     // TODO: send to backend
-    reset();
   };
 
   return (
@@ -54,6 +63,7 @@ const BeARider = () => {
             <input
               {...register("name", { required: true })}
               type="text"
+              value={user?.displayName}
               placeholder="Your Name"
               className="input input-bordered w-full"
               readOnly
@@ -67,6 +77,7 @@ const BeARider = () => {
             <input
               {...register("email", { required: true })}
               type="email"
+              value={user?.email}
               placeholder="Your Email"
               className="input input-bordered w-full"
               readOnly
@@ -84,7 +95,7 @@ const BeARider = () => {
             </select>
             <input
               {...register("nid", { required: true })}
-              type="text"
+              type="number"
               placeholder="NID No"
               className="input input-bordered w-full"
             />
