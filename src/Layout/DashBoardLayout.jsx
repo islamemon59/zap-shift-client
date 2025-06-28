@@ -63,6 +63,9 @@ const DashBoardLayout = () => {
           <li>
             <NavLink to="/dashboard/updateProfile">Update Profile</NavLink>
           </li>
+          <li>
+            <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
+          </li>
         </ul>
       </div>
     </div>

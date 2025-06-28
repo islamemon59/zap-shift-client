@@ -10,7 +10,7 @@ const PendingRiders = () => {
   const { data: riders = [], refetch, isLoading } = useQuery({
     queryKey: ["Pending-Rider"],
     queryFn: async () => {
-      const res = await axiosSecure("/riders");
+      const res = await axiosSecure("/allRiders");
       return res.data;
     },
   });
@@ -21,7 +21,7 @@ const PendingRiders = () => {
     return <Loader />;
   }
 
-  const handleStatusChange = async (riderId, status) => {
+  const handleStatusChange = async (riderId, status, email) => {
     if (status === "cancelled") {
       // Show confirmation for cancel
       const result = await Swal.fire({
@@ -37,11 +37,11 @@ const PendingRiders = () => {
     }
 
     try {
-      await axiosSecure.patch(`/riders/${riderId}`, { status });
+      await axiosSecure.patch(`/riders/${riderId}`, { status, email });
 
       Swal.fire({
         icon: "success",
-        title: `Request ${status}${status === "cancelled" ? " cancelled" : " accepted"}`,
+        title: `Request ${status}${status === "cancelled" ? " cancelled" : " active"}`,
         timer: 1500,
         showConfirmButton: false,
       });
@@ -126,7 +126,7 @@ const PendingRiders = () => {
                         Details
                       </button>
                       <button
-                        onClick={() => handleStatusChange(rider._id, "accepted")}
+                        onClick={() => handleStatusChange(rider._id, "active", rider?.email)}
                         className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition"
                         aria-label={`Accept request from ${rider.name}`}
                       >
