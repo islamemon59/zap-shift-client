@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../Pages/Home/Shared/ProFastLogo/ProFastLogo";
+import useUserRole from "../Hooks/useUserRole/useUserRole";
 
 const DashBoardLayout = () => {
+  const { role, isLoading } = useUserRole();
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -54,17 +57,21 @@ const DashBoardLayout = () => {
           <li>
             <NavLink to="/dashboard/trackParcel">Track a Parcel</NavLink>
           </li>
-          <li>
-            <NavLink to="/dashboard/pendingRiders">Pending Riders</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/activeRiders">Active Riders</NavLink>
-          </li>
+          {!isLoading && role === "admin" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/pendingRiders">Pending Riders</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/activeRiders">Active Riders</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
+              </li>
+            </>
+          )}
           <li>
             <NavLink to="/dashboard/updateProfile">Update Profile</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
           </li>
         </ul>
       </div>
