@@ -1,7 +1,7 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import AuthHook from "../AuthHook/AuthHook";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_URL,
@@ -9,38 +9,48 @@ const axiosSecure = axios.create({
 
 const UseAxiosSecure = () => {
   const { user } = AuthHook();
+  const navigate = useNavigate();
   //   console.log(user);
-
-  axiosSecure.interceptors.request.use(
-    (config) => {
-      // Do something before request is sent
-      config.headers.Authorization = `Bearer ${user.accessToken}`;
-      return config;
-    },
-    (error) => {
-      // Do something with request error
-      return Promise.reject(error);
-    }
-  );
-
-  // ✅ Response interceptor: check for 401 / 403
-  axiosSecure.interceptors.response.use(
-    (response) => response, // if success, just return
-    async (error) => {
-      if (error.response) {
-        const status = error.response.status;
-        if (status === 401 || status === 403) {
-          toast.error("Auth error detected:", status);
-          // Example: logout user
-        //   const auth = getAuth();
-        //   await signOut(auth);
-          // Optional: redirect to login page or show alert
-        //   window.location.href = "/login"; // or use your router
-        }
+  useEffect(() => {
+    axiosSecure.interceptors.request.use(
+      (config) => {
+        // Do something before request is sent
+        config.headers.Authorization = `Bearer ${user.accessToken}`;
+        return config;
+      },
+      (error) => {
+        // Do something with request error
+        return Promise.reject(error);
       }
-      return Promise.reject(error); // pass error to original caller
-    }
-  );
+    );
+
+    // ✅ Response interceptor: check for 401 / 403
+    axiosSecure.interceptors.response.use(
+      (response) => {
+        // Success → just return data
+        return response;
+      },
+      (error) => {
+        // Error globally handled
+        if (error.response) {
+          const status = error.response.status;
+
+          if (status === 401) {
+            // navigate("/login")
+            console.error("Unauthorized! Token might be invalid or expired.");
+          } else if (status === 403) {
+            navigate("/forbidden");
+            console.error("Forbidden! You don't have permission.");
+          } else if (status >= 500) {
+            console.error("Server error! Please try again later.");
+          }
+        }
+
+        // Always reject so calling code still knows there was an error
+        return Promise.reject(error);
+      }
+    );
+  }, []);
 
   return axiosSecure;
 };

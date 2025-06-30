@@ -6,9 +6,10 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
+import Swal from "sweetalert2";
 
 const PaymentForm = () => {
-  const {user} = AuthHook()
+  const { user } = AuthHook();
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState("");
@@ -16,7 +17,11 @@ const PaymentForm = () => {
   const axiosSecure = UseAxiosSecure();
   console.log(parcelId);
 
-  const { data: parcelInfo, isLoading } = useQuery({
+  const {
+    data: parcelInfo,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["parcel", parcelId],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/parcel/${parcelId}`);
@@ -71,8 +76,8 @@ const PaymentForm = () => {
         card: elements.getElement(CardElement),
         billing_details: {
           name: user?.displayName,
-          email: user?.email
-        }
+          email: user?.email,
+        },
       },
     });
 
@@ -89,11 +94,21 @@ const PaymentForm = () => {
           currency: result.paymentIntent.currency,
           paymentMethod: result.paymentIntent.payment_method,
           status: result.paymentIntent.status,
-          transactionId: result.paymentIntent.id
-        }
+          transactionId: result.paymentIntent.id,
+        };
 
-        const {data} = await axiosSecure.post("payments", paymentData)
+        const { data } = await axiosSecure.post("payments", paymentData);
         console.log(data);
+        card.clear();
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Payment Successful",
+            icon: "success",
+            draggable: true,
+          });
+
+          refetch();
+        }
       }
     }
   };

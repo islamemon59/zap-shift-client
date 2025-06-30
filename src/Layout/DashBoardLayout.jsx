@@ -60,6 +60,9 @@ const DashBoardLayout = () => {
           {!isLoading && role === "admin" && (
             <>
               <li>
+                <NavLink to="/dashboard/assign-rider">Assign Rider</NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/pendingRiders">Pending Riders</NavLink>
               </li>
               <li>

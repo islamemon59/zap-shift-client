@@ -24,6 +24,8 @@ const BeARider = () => {
         creationDate: new Date().toISOString(),
       };
 
+      console.log(riderData);
+
       const res = await axiosSecure.post("/riders", riderData);
 
       if (res.data?.insertedId) {

@@ -19,6 +19,7 @@ import ActiveRiders from "../Pages/Dashboard/ActiveRiders/ActiveRiders";
 import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../Private/AdminRoute";
+import AssignRider from "../Pages/Dashboard/AssignRider/AssignRider";
 
 export const router = createBrowserRouter([
   {
@@ -34,10 +35,6 @@ export const router = createBrowserRouter([
         Component: Coverage,
         hydrateFallbackElement: <Loader />,
         loader: () => fetch("./coverageData.json"),
-      },
-      {
-        path: "forbidden",
-        Component: Forbidden
       },
       {
         path: "beARider",
@@ -101,22 +98,36 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/pendingRiders",
-        element: <AdminRoute>
-          <PendingRiders></PendingRiders>
-        </AdminRoute>
+        element: (
+          <AdminRoute>
+            <PendingRiders></PendingRiders>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/assign-rider",
+        Component: AssignRider
       },
       {
         path: "/dashboard/activeRiders",
-        element: <AdminRoute>
-          <ActiveRiders></ActiveRiders>
-        </AdminRoute>
+        element: (
+          <AdminRoute>
+            <ActiveRiders></ActiveRiders>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/makeAdmin",
-        element: <AdminRoute>
-          <MakeAdmin></MakeAdmin>
-        </AdminRoute>
+        element: (
+          <AdminRoute>
+            <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+        ),
       },
     ],
+  },
+  {
+    path: "forbidden",
+    Component: Forbidden,
   },
 ]);
