@@ -47,17 +47,19 @@ const AssignRider = () => {
   console.log(selectedParcel);
 
   // Assign handler
-  const handleAssignRider = async (parcelId, riderId) => {
+  const handleAssignRider = async (parcelId, riderId, rider) => {
     try {
       // Step 1: update parcel
       await axiosSecure.patch(`/parcels/${parcelId}`, {
         assigned_rider: riderId,
-        delivery_status: "in-transit",
+        riderEmail: rider.email,
+        riderName: rider.name,
+        delivery_status: "rider_assigned",
       });
 
       Swal.fire({
         icon: "success",
-        title: "Rider assigned & parcel now in-transit",
+        title: "Rider assigned & parcel now rider_assigned",
         timer: 1500,
         showConfirmButton: false,
       });
@@ -180,7 +182,7 @@ const AssignRider = () => {
                     </div>
                     <button
                       onClick={() =>
-                        handleAssignRider(selectedParcel._id, rider._id)
+                        handleAssignRider(selectedParcel._id, rider._id, rider)
                       }
                       className="btn btn-sm btn-secondary text-primary"
                     >

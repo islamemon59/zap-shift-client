@@ -14,24 +14,18 @@ const UseAxiosSecure = () => {
   useEffect(() => {
     axiosSecure.interceptors.request.use(
       (config) => {
-        // Do something before request is sent
-        config.headers.Authorization = `Bearer ${user.accessToken}`;
+        config.headers.Authorization = `Bearer ${user?.accessToken}`;
         return config;
       },
       (error) => {
-        // Do something with request error
         return Promise.reject(error);
       }
     );
-
-    // ✅ Response interceptor: check for 401 / 403
     axiosSecure.interceptors.response.use(
       (response) => {
-        // Success → just return data
         return response;
       },
       (error) => {
-        // Error globally handled
         if (error.response) {
           const status = error.response.status;
 
@@ -45,12 +39,10 @@ const UseAxiosSecure = () => {
             console.error("Server error! Please try again later.");
           }
         }
-
-        // Always reject so calling code still knows there was an error
         return Promise.reject(error);
       }
     );
-  }, []);
+  }, [navigate, user.accessToken]);
 
   return axiosSecure;
 };
