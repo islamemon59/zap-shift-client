@@ -2,6 +2,17 @@ import React from "react";
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../Pages/Home/Shared/ProFastLogo/ProFastLogo";
 import useUserRole from "../Hooks/useUserRole/useUserRole";
+import {
+  FiHome,
+  FiPackage,
+  FiCreditCard,
+  FiMapPin,
+  FiUserCheck,
+  FiCheckCircle,
+  FiUsers,
+  FiUserPlus,
+  FiEdit,
+} from "react-icons/fi";
 
 const DashBoardLayout = () => {
   const { role, isLoading } = useUserRole();
@@ -42,50 +53,111 @@ const DashBoardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          <ProFastLogo></ProFastLogo>
-          {/* Sidebar content here */}
+        <aside className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <ProFastLogo />
+
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" className="flex items-center gap-2">
+              <FiHome /> Home
+            </NavLink>
           </li>
+
           {!isLoading && role === "user" && (
             <>
               <li>
-                <NavLink to="/dashboard/myParcel">My Parcel</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/paymentHistory">
-                  Payment History
+                <NavLink
+                  to="/dashboard/myParcel"
+                  className="flex items-center gap-2"
+                >
+                  <FiPackage /> My Parcel
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/trackParcel">Track a Parcel</NavLink>
+                <NavLink
+                  to="/dashboard/paymentHistory"
+                  className="flex items-center gap-2"
+                >
+                  <FiCreditCard /> Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/trackParcel"
+                  className="flex items-center gap-2"
+                >
+                  <FiMapPin /> Track a Parcel
+                </NavLink>
               </li>
             </>
           )}
-          {!isLoading && role === "rider" && <>
-          <NavLink to="/dashboard/pendingDeliveries">Pending Deliveries</NavLink>
-          </>}
+
+          {!isLoading && role === "rider" && (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/pendingDeliveries"
+                  className="flex items-center gap-2"
+                >
+                  <FiPackage /> Pending Deliveries
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/completedDeliveries"
+                  className="flex items-center gap-2"
+                >
+                  <FiCheckCircle /> Completed Deliveries
+                </NavLink>
+              </li>
+            </>
+          )}
+
           {!isLoading && role === "admin" && (
             <>
               <li>
-                <NavLink to="/dashboard/assign-rider">Assign Rider</NavLink>
+                <NavLink
+                  to="/dashboard/assign-rider"
+                  className="flex items-center gap-2"
+                >
+                  <FiUserCheck /> Assign Rider
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/pendingRiders">Pending Riders</NavLink>
+                <NavLink
+                  to="/dashboard/pendingRiders"
+                  className="flex items-center gap-2"
+                >
+                  <FiUsers /> Pending Riders
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/activeRiders">Active Riders</NavLink>
+                <NavLink
+                  to="/dashboard/activeRiders"
+                  className="flex items-center gap-2"
+                >
+                  <FiCheckCircle /> Active Riders
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
+                <NavLink
+                  to="/dashboard/makeAdmin"
+                  className="flex items-center gap-2"
+                >
+                  <FiUserPlus /> Make Admin
+                </NavLink>
               </li>
             </>
           )}
+
           <li>
-            <NavLink to="/dashboard/updateProfile">Update Profile</NavLink>
+            <NavLink
+              to="/dashboard/updateProfile"
+              className="flex items-center gap-2"
+            >
+              <FiEdit /> Update Profile
+            </NavLink>
           </li>
-        </ul>
+        </aside>
       </div>
     </div>
   );
