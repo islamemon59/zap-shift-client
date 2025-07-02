@@ -1,7 +1,7 @@
 import React from "react";
 import AuthHook from "../Hooks/AuthHook/AuthHook";
 import useUserRole from "../Hooks/useUserRole/useUserRole";
-import { useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import Loader from "../Pages/Home/Shared/Loader/Loader";
 
 const RiderRoute = ({ children }) => {

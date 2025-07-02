@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import Swal from "sweetalert2";
+import useTrackingLogger from "../../../Hooks/useTrackingLogger/useTrackingLogger";
 
 const PaymentForm = () => {
   const { user } = AuthHook();
@@ -16,6 +17,7 @@ const PaymentForm = () => {
   const { parcelId } = useParams();
   const axiosSecure = UseAxiosSecure();
   console.log(parcelId);
+  const { logTracking } = useTrackingLogger();
 
   const {
     data: parcelInfo,
@@ -105,6 +107,13 @@ const PaymentForm = () => {
             title: "Payment Successful",
             icon: "success",
             draggable: true,
+          });
+
+          await logTracking({
+            tracking_id: parcelInfo.tracking_id,
+            status: "Payment Done",
+            details: `Paid by ${user?.displayName}`,
+            updated_by: user?.email,
           });
 
           refetch();

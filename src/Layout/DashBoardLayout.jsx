@@ -109,6 +109,14 @@ const DashBoardLayout = () => {
                   <FiCheckCircle /> Completed Deliveries
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myEarnings"
+                  className="flex items-center gap-2"
+                >
+                  <FiCheckCircle /> My Earnings
+                </NavLink>
+              </li>
             </>
           )}
 

@@ -3,11 +3,15 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loader from "../../Home/Shared/Loader/Loader";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
+import useTrackingLogger from "../../../Hooks/useTrackingLogger/useTrackingLogger";
+import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 
 const AssignRider = () => {
   const axiosSecure = UseAxiosSecure();
   const [selectedParcel, setSelectedParcel] = useState(null);
   const [matchDistrict, setMatchDistrict] = useState([]);
+  const { logTracking } = useTrackingLogger();
+  const { user } = AuthHook();
 
   // Load parcels ready to assign
   const {
@@ -47,7 +51,7 @@ const AssignRider = () => {
   console.log(selectedParcel);
 
   // Assign handler
-  const handleAssignRider = async (parcelId, riderId, rider) => {
+  const handleAssignRider = async (parcelId, riderId, rider, tracking_id) => {
     try {
       // Step 1: update parcel
       await axiosSecure.patch(`/parcels/${parcelId}`, {
@@ -55,6 +59,13 @@ const AssignRider = () => {
         riderEmail: rider.email,
         riderName: rider.name,
         delivery_status: "rider_assigned",
+      });
+
+      await logTracking({
+        tracking_id: tracking_id,
+        status: "rider_assigned",
+        details: `Assigned to ${rider?.name}`,
+        updated_by: user?.email,
       });
 
       Swal.fire({
@@ -182,7 +193,12 @@ const AssignRider = () => {
                     </div>
                     <button
                       onClick={() =>
-                        handleAssignRider(selectedParcel._id, rider._id, rider)
+                        handleAssignRider(
+                          selectedParcel._id,
+                          rider._id,
+                          rider,
+                          selectedParcel.tracking_id
+                        )
                       }
                       className="btn btn-sm btn-secondary text-primary"
                     >

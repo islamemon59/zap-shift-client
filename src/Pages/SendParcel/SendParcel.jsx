@@ -6,6 +6,7 @@ import Swal from "sweetalert2"; // ✅ ADDED
 import AuthHook from "../../Hooks/AuthHook/AuthHook";
 import UseAxiosSecure from "../../Hooks/AxiosSecure/UseAxiosSecure";
 import { useLoaderData } from "react-router";
+import useTrackingLogger from "../../Hooks/useTrackingLogger/useTrackingLogger";
 
 const AddParcelForm = ({ loggedInUser }) => {
   const [cost, setCost] = useState(null);
@@ -31,6 +32,8 @@ const AddParcelForm = ({ loggedInUser }) => {
   const uniqueDistrict = [
     ...new Set(warHouseData.map((item) => item.district)),
   ];
+
+  const {logTracking} = useTrackingLogger()
 
   const calculateCost = (data) => {
     const withinCity = data.senderRegion === data.receiverRegion;
@@ -109,6 +112,14 @@ const AddParcelForm = ({ loggedInUser }) => {
     console.log("✅ Final Parcel Data:", formData);
 
     toast.success(`Parcel submitted!\nTracking ID: ${trackingId}`);
+
+    await logTracking({
+      tracking_id: formData.tracking_id,
+      status: "Parcel_created",
+      details: `Created by ${user?.displayName}`,
+      updated_by: user?.email,
+    })
+    
     reset();
     setCost(null);
   };

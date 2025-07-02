@@ -3,12 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import Loader from "../../Home/Shared/Loader/Loader";
+import useTrackingLogger from "../../../Hooks/useTrackingLogger/useTrackingLogger";
 
 const PendingDeliveries = () => {
   const axiosSecure = UseAxiosSecure();
   const { user } = AuthHook(); // get logged-in user
   const riderEmail = user?.email;
   console.log(riderEmail);
+  const { logTracking } = useTrackingLogger();
 
   const {
     data: parcels = [],
@@ -28,7 +30,7 @@ const PendingDeliveries = () => {
   console.log(parcels);
 
   // update delivery_status
-  const handleUpdateStatus = async (parcelId, newStatus) => {
+  const handleUpdateStatus = async (parcelId, newStatus, tracking_id) => {
     const result = await Swal.fire({
       title: `Are you sure?`,
       text: `Do you want to mark this parcel as ${newStatus}?`,
@@ -44,6 +46,23 @@ const PendingDeliveries = () => {
         await axiosSecure.patch(`parcels/${parcelId}/delivery-status`, {
           delivery_status: newStatus,
         });
+
+        if (newStatus === "in-transit") {
+          await logTracking({
+            tracking_id: tracking_id,
+            status: newStatus,
+            details: `Picked up by ${user?.displayName}`,
+            updated_by: user?.email,
+          });
+        }
+        if (newStatus === "delivered") {
+          await logTracking({
+            tracking_id: tracking_id,
+            status: newStatus,
+            details: `Delivered by ${user?.displayName}`,
+            updated_by: user?.email,
+          });
+        }
 
         Swal.fire({
           icon: "success",
@@ -114,7 +133,11 @@ const PendingDeliveries = () => {
                     {parcel.delivery_status === "rider_assigned" && (
                       <button
                         onClick={() =>
-                          handleUpdateStatus(parcel._id, "in-transit")
+                          handleUpdateStatus(
+                            parcel._id,
+                            "in-transit",
+                            parcel.tracking_id
+                          )
                         }
                         className="btn btn-xs btn-secondary text-primary"
                       >
@@ -124,7 +147,11 @@ const PendingDeliveries = () => {
                     {parcel.delivery_status === "in-transit" && (
                       <button
                         onClick={() =>
-                          handleUpdateStatus(parcel._id, "delivered")
+                          handleUpdateStatus(
+                            parcel._id,
+                            "delivered",
+                            parcel.tracking_id
+                          )
                         }
                         className="btn btn-xs btn-secondary text-primary"
                       >
