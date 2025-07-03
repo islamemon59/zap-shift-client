@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import UseAxiosSecure from "../../../Hooks/AxiosSecure/UseAxiosSecure";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../Home/Shared/Loader/Loader";
 
 const MyEarnings = () => {
   const axiosSecure = UseAxiosSecure();
@@ -82,7 +83,7 @@ const MyEarnings = () => {
     };
   }, [parcels, filter]);
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <Loader/>;
 
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-5xl mx-auto">

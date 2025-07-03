@@ -42,7 +42,7 @@ const UseAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [navigate, user.accessToken]);
+  }, [navigate, user?.accessToken]);
 
   return axiosSecure;
 };

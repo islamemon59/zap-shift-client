@@ -13,9 +13,14 @@ import {
   FiUserPlus,
   FiEdit,
 } from "react-icons/fi";
+import Loader from "../Pages/Home/Shared/Loader/Loader";
 
 const DashBoardLayout = () => {
   const { role, isLoading } = useUserRole();
+
+  if(isLoading){
+    return <Loader/>
+  }
 
   return (
     <div className="drawer lg:drawer-open">

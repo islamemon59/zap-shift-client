@@ -2,9 +2,10 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
 import AuthHook from "../../../../Hooks/AuthHook/AuthHook";
+import Loader from "../Loader/Loader";
 
 const Header = () => {
-  const { user, signOutUser } = AuthHook();
+  const { user, signOutUser, loading } = AuthHook();
   const links = (
     <>
       <li>
@@ -39,6 +40,10 @@ const Header = () => {
     }).catch(err => {
       console.log(err);
     })
+  }
+
+  if(loading){
+    return <Loader/>
   }
 
   return (
