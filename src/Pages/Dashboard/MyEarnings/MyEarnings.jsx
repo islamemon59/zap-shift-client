@@ -32,7 +32,7 @@ const MyEarnings = () => {
 
     // filter parcels based on time
     const filteredParcels = parcels.filter((parcel) => {
-      const createdAt = new Date(parcel.delivered_at);
+      const createdAt = new Date(parcel.cashout_date);
 
       if (filter === "today") {
         return (
