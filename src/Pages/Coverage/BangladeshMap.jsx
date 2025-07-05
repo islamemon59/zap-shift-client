@@ -44,7 +44,7 @@ const BangladeshMap = ({ districtData }) => {
     setSearch(input.trim());
   };
   return (
-    <div>
+    <div className="space-y-10">
       {/* Search bar */}
       <form
         onSubmit={handleSubmit}
@@ -63,7 +63,7 @@ const BangladeshMap = ({ districtData }) => {
           />
           <button
             onClick={handleSubmit}
-            className="btn btn-secondary text-primary-content absolute top-0 right-0 rounded-full z-10"
+            className="btn btn-secondary text-primary-content absolute top-0 -right-1 rounded-full z-10"
           >
             Search
           </button>
@@ -73,9 +73,11 @@ const BangladeshMap = ({ districtData }) => {
       <div className="divider"></div>
 
       {/* 🔸 Sub Title */}
-      <h2 className="text-xl font-semibold text-start text-gray-600 mb-6 my-8">
-        We deliver almost all over Bangladesh
-      </h2>
+      <div>
+        <h2 className="text-2xl md:text-3xl font-semibold text-start text-primary mb-6 my-8">
+          We deliver almost all over Bangladesh
+        </h2>
+      </div>
 
       <MapContainer
         center={[23.685, 90.3563]} // Bangladesh center
