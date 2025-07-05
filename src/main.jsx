@@ -11,7 +11,7 @@ const queryClient = new QueryClient()
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div className="urbanist max-w-7xl mx-auto">
+    <div className="urbanist">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router}></RouterProvider>

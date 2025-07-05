@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "image": "https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Alpha Logistics",
+    "short_name": "APL"
+  },
+  {
+    "id": 2,
+    "image": "https://plus.unsplash.com/premium_photo-1689551671541-31a345ce6ae0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Bravo Express",
+    "short_name": "BRV"
+  },
+  {
+    "id": 3,
+    "image": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Charlie Couriers",
+    "short_name": "CHC"
+  },
+  {
+    "id": 4,
+    "image": "https://plus.unsplash.com/premium_photo-1689551671548-79ff30459d2a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Delta Delivery",
+    "short_name": "DLT"
+  },
+  {
+    "id": 5,
+    "image": "https://images.unsplash.com/photo-1653379671837-224a212bf5f5?q=80&w=788&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Echo Parcel Service",
+    "short_name": "ECO"
+  },
+  {
+    "id": 6,
+    "image": "https://images.unsplash.com/photo-1737197957593-fddef9c68ba5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Foxtrot Freight",
+    "short_name": "FXT"
+  },
+  {
+    "id": 7,
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Golf Go",
+    "short_name": "GLF"
+  },
+  {
+    "id": 8,
+    "image": "https://plus.unsplash.com/premium_photo-1682092866811-6e21d00424e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "name": "Hotel Haul",
+    "short_name": "HTL"
+  }
+]

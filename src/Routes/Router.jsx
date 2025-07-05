@@ -25,6 +25,7 @@ import RiderRoute from "../Private/RiderRoute";
 import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
 import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import BaRiderLandingPage from "../Pages/Dashboard/BeARider/BaRiderLandingPage";
 
 export const router = createBrowserRouter([
   {
@@ -42,12 +43,21 @@ export const router = createBrowserRouter([
         loader: () => fetch("./coverageData.json"),
       },
       {
+        path: "beARiderLandingPage",
+        loader: () => fetch("./topAgents.json"),
+        element: (
+          <PrivateRoute>
+            <BaRiderLandingPage/>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "beARider",
         hydrateFallbackElement: <Loader />,
         loader: () => fetch("./coverageData.json"),
         element: (
           <PrivateRoute>
-            <BeARider></BeARider>
+            <BeARider/>
           </PrivateRoute>
         ),
       },

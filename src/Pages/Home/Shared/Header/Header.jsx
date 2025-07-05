@@ -25,7 +25,7 @@ const Header = () => {
       )}
 
       <li>
-        <NavLink to="/beARider">Be a Rider</NavLink>
+        <NavLink to="/beARiderLandingPage">Be a Rider</NavLink>
       </li>
       <li>
         <NavLink to="/about">About Us</NavLink>
@@ -35,63 +35,71 @@ const Header = () => {
 
   const handleLogout = () => {
     signOutUser()
-    .then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    })
-  }
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  if(loading){
-    return <Loader/>
+  if (loading) {
+    return <Loader />;
   }
 
   return (
-    <div className="navbar shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <div  className="shadow-sm py-2 sticky top-0 z-50 bg-base-100/70 backdrop-blur-md flex items-center">
+      <div className="navbar max-w-7xl mx-auto h-full">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
+              {links}
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            {links}
-          </ul>
+          <div className="btn btn-ghost text-xl">
+            <ProFastLogo />
+          </div>
         </div>
-        <div className="btn btn-ghost text-xl">
-          <ProFastLogo />
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
-      </div>
-      <div className="navbar-end">
-        {user ? (
-          <button className="btn btn-outline btn-secondary text-primary-content" onClick={handleLogout}>Logout</button>
-        ) : (
-          <Link
-            to="/login"
-            className="btn btn-secondary text-primary-content"
-          >
-            Sign In
-          </Link>
-        )}
+        <div className="navbar-end">
+          {user ? (
+            <button
+              className="btn btn-outline btn-secondary text-primary-content"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="btn btn-secondary text-primary-content"
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
