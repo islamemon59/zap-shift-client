@@ -26,6 +26,12 @@ import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/Complete
 import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import BaRiderLandingPage from "../Pages/Dashboard/BeARider/BaRiderLandingPage";
+import ErrorPage from "../Pages/Home/Shared/ErrorPage/ErrorPage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Story from "../Pages/AboutUs/Story/Story";
+import Mission from "../Pages/AboutUs/Mission/Mission";
+import Success from "../Pages/AboutUs/Success/Success";
+import TeamOthers from "../Pages/AboutUs/Team&Others/TeamOthers";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +39,7 @@ export const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       {
-        index: true,
+        path: "/",
         Component: Home,
       },
       {
@@ -71,6 +77,28 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "aboutUs",
+        Component: AboutUs,
+        children: [
+          {
+            path: "/aboutUs/story",
+            Component: Story
+          },
+          {
+            path: "/aboutUs/mission",
+            Component: Mission
+          },
+          {
+            path: "/aboutUs/success",
+            Component: Success
+          },
+          {
+            path: "/aboutUs/team",
+            Component: TeamOthers
+          },
+        ]
+      }
     ],
   },
   {
@@ -173,4 +201,8 @@ export const router = createBrowserRouter([
     path: "forbidden",
     Component: Forbidden,
   },
+  {
+    path: "*",
+    Component: ErrorPage
+  }
 ]);

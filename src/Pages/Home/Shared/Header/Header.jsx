@@ -19,16 +19,18 @@ const Header = () => {
       </li>
 
       {user && (
-        <li>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink to="/beARiderLandingPage">Be a Rider</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
       )}
 
       <li>
-        <NavLink to="/beARiderLandingPage">Be a Rider</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/aboutUs/story">About Us</NavLink>
       </li>
     </>
   );
@@ -48,11 +50,15 @@ const Header = () => {
   }
 
   return (
-    <div  className="shadow-sm py-2 sticky top-0 z-50 bg-base-100/70 backdrop-blur-md flex items-center">
+    <div className="shadow-sm py-2 sticky top-0 z-50 bg-base-100/70 backdrop-blur-md flex items-center">
       <div className="navbar max-w-7xl mx-auto h-full">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden px-1"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
