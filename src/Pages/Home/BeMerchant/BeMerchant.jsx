@@ -10,7 +10,7 @@ const BeMerchant = () => {
           className="sm:max-w-sm max-w-xs rounded-lg shadow-2xl"
         />
         <div>
-          <h1 className="md:text-5xl text-3xl font-bold text-base-100">
+          <h1 className="md:text-[40px] text-3xl font-bold text-base-100">
             Merchant and Customer Satisfaction is Our First Priority
           </h1>
           <p className="py-6 text-base-100">

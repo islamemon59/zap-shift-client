@@ -72,7 +72,7 @@ const FeedbackData = () => {
       <div className="max-w-3xl mx-auto text-center mb-10 flex flex-col gap-8 items-center">
         <img className="w-64" src={customer} alt="customer.png" />
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">
+          <h2 className="text-3xl md:text-[40px] font-bold text-primary">
             What our customers are sayings
           </h2>
           <p className="mt-4 text-base text-gray-600">

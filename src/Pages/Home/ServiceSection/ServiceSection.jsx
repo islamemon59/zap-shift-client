@@ -45,18 +45,20 @@ const ServiceSection = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto p-6 my-20">
+    <section className="max-w-6xl mx-auto p-6 md:p-25 bg-primary rounded-4xl -z-10">
       {/* Section header */}
       <header className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl text-primary font-extrabold">Our Services</h2>
-        <p className="mt-4 max-w-2xl mx-auto text-gray-600">
+        <h2 className="text-3xl md:text-[40px] text-white font-extrabold">
+          Our Services
+        </h2>
+        <p className="mt-4 max-w-2xl mx-auto text-gray-300">
           Enjoy fast, reliable parcel delivery with real‑time tracking and zero
           hassle. From personal packages to business shipments — we deliver on
           time, every time.
         </p>
       </header>
       {/* Service Card */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 z-20">
         {services.map((service, index) => (
           <ServiceCard key={index} service={service} />
         ))}
