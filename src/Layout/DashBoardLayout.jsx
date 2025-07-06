@@ -80,10 +80,10 @@ const DashBoardLayout = () => {
 
           <li>
             <NavLink
-              to="/dashboard/updateProfile"
+              to="/dashboard/profile"
               className="flex items-center gap-2"
             >
-              <FiEdit /> Update Profile
+              <FiEdit />Profile
             </NavLink>
           </li>
         </aside>

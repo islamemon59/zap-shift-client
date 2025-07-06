@@ -32,6 +32,8 @@ import Story from "../Pages/AboutUs/Story/Story";
 import Mission from "../Pages/AboutUs/Mission/Mission";
 import Success from "../Pages/AboutUs/Success/Success";
 import TeamOthers from "../Pages/AboutUs/Team&Others/TeamOthers";
+import Profile from "../Pages/Dashboard/Profile/Profile";
+import UpdateProfile from "../Pages/Dashboard/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +114,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "updateProfile",
+        Component: UpdateProfile,
       },
     ],
   },
@@ -194,6 +200,12 @@ export const router = createBrowserRouter([
             <MyEarnings></MyEarnings>
           </RiderRoute>
         ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: <PrivateRoute>
+          <Profile/>
+        </PrivateRoute>
       },
     ],
   },
