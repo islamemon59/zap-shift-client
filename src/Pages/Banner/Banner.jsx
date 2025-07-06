@@ -19,14 +19,23 @@ const Banner = () => {
         preventMovementUntilSwipeScrollTolerance={true}
         swipeScrollTolerance={50}
       >
-        <div>
-          <img src={bannerImage1} />
+        <div style={{ maxHeight: "700px", objectFit: "cover" }}>
+          <img
+            style={{ maxHeight: "700px", objectFit: "cover" }}
+            src={bannerImage1}
+          />
         </div>
-        <div>
-          <img src={bannerImage2} />
+        <div style={{ maxHeight: "700px", objectFit: "cover" }}>
+          <img
+            style={{ maxHeight: "700px", objectFit: "cover" }}
+            src={bannerImage2}
+          />
         </div>
-        <div>
-          <img src={bannerImage3} />
+        <div style={{ maxHeight: "700px", objectFit: "cover" }}>
+          <img
+            style={{ maxHeight: "700px", objectFit: "cover" }}
+            src={bannerImage3}
+          />
         </div>
       </Carousel>
     </div>

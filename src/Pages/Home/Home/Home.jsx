@@ -6,17 +6,20 @@ import BenefitsSection from "../Benefits/BenefitsSection";
 import BeMerchant from "../BeMerchant/BeMerchant";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import FeedbackData from "../CustomerFeedback/FeedbackData";
+import Container from "../../../Components/Container/Container";
 
 const Home = () => {
   return (
     <div className="space-y-28">
       {/* Banner Section */}
-      <section className="mt-10">
-        <Banner />
-      </section>
+      {/* <section>
+        <Container>
+          <Banner />
+        </Container>
+      </section> */}
       {/* How it works section */}
       <section>
-        <HowItWorks/>
+        <HowItWorks />
       </section>
       {/* Service Section */}
       <section>
@@ -36,7 +39,7 @@ const Home = () => {
       </section>
       {/* Client Slider Section */}
       <section>
-        <FeedbackData/>
+        <FeedbackData />
       </section>
     </div>
   );

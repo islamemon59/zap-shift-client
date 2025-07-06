@@ -83,6 +83,18 @@ const NavLinks = () => {
           About Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/pricing"
+        >
+          Pricing
+        </NavLink>
+      </li>
     </>
   );
 };

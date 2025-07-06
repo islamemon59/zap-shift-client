@@ -34,6 +34,7 @@ import Success from "../Pages/AboutUs/Success/Success";
 import TeamOthers from "../Pages/AboutUs/Team&Others/TeamOthers";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile/UpdateProfile";
+import PricingCalculator from "../Pages/PricingCalculator/PricingCalculator";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
             Component: TeamOthers
           },
         ]
+      },
+      {
+        path: "pricing",
+        Component: PricingCalculator
       }
     ],
   },
