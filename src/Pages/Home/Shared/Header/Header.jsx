@@ -3,91 +3,10 @@ import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
 import AuthHook from "../../../../Hooks/AuthHook/AuthHook";
 import Loader from "../Loader/Loader";
+import NavLinks from "../../../../Components/NavLinks/NavLinks";
 
 const Header = () => {
   const { user, signOutUser, loading } = AuthHook();
-  const links = (
-    <>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-secondary rounded-3xl"
-            } font-semibold rounded-3xl`
-          }
-          to="/"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-secondary rounded-3xl"
-            } font-semibold rounded-3xl`
-          }
-          to="/coverage"
-        >
-          Coverage
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-secondary rounded-3xl"
-            } font-semibold rounded-3xl`
-          }
-          to="/sendParcel"
-        >
-          Send Parcel
-        </NavLink>
-      </li>
-
-      {user && (
-        <>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-secondary rounded-3xl"
-                } font-semibold rounded-3xl`
-              }
-              to="/beARiderLandingPage"
-            >
-              Be a Rider
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-secondary rounded-3xl"
-                } font-semibold rounded-3xl`
-              }
-              to="/dashboard"
-            >
-              Dashboard
-            </NavLink>
-          </li>
-        </>
-      )}
-
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-secondary rounded-3xl"
-            } font-semibold rounded-3xl`
-          }
-          to="/aboutUs/story"
-        >
-          About Us
-        </NavLink>
-      </li>
-    </>
-  );
 
   const handleLogout = () => {
     signOutUser()
@@ -133,7 +52,7 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {links}
+              <NavLinks />
             </ul>
           </div>
           <div className="text-xl">
@@ -141,7 +60,9 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1">
+            <NavLinks />
+          </ul>
         </div>
         <div className="navbar-end">
           {user ? (
