@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0">
       <div className="card-body">
-        <h1 className="text-4xl text-start text-primary font-bold">
+        <h1 className="sm:text-4xl text-3xl text-start text-primary font-bold">
           Welcome Back
         </h1>
         <p className="text-lg text-primary-content">Login with Profast</p>

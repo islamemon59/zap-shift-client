@@ -9,28 +9,82 @@ const Header = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/coverage">Coverage</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/coverage"
+        >
+          Coverage
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/sendParcel">Send Parcel</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/sendParcel"
+        >
+          Send Parcel
+        </NavLink>
       </li>
 
       {user && (
         <>
           <li>
-            <NavLink to="/beARiderLandingPage">Be a Rider</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-secondary rounded-3xl"
+                } font-semibold rounded-3xl`
+              }
+              to="/beARiderLandingPage"
+            >
+              Be a Rider
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-secondary rounded-3xl"
+                } font-semibold rounded-3xl`
+              }
+              to="/dashboard"
+            >
+              Dashboard
+            </NavLink>
           </li>
         </>
       )}
 
       <li>
-        <NavLink to="/aboutUs/story">About Us</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/aboutUs/story"
+        >
+          About Us
+        </NavLink>
       </li>
     </>
   );
@@ -50,14 +104,14 @@ const Header = () => {
   }
 
   return (
-    <div className="shadow-sm py-2 sticky top-0 z-50 bg-base-100/70 backdrop-blur-md flex items-center">
-      <div className="navbar max-w-7xl mx-auto h-full">
+    <div className="shadow-sm py-2 sticky top-0 z-50 bg-base-100/70 backdrop-blur-md flex justify-center">
+      <div className="navbar max-w-7xl mx-auto h-full flex items-center py-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden px-1"
+              className="btn btn-ghost lg:hidden px-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +136,7 @@ const Header = () => {
               {links}
             </ul>
           </div>
-          <div className="btn btn-ghost text-xl">
+          <div className="text-xl">
             <ProFastLogo />
           </div>
         </div>
@@ -98,12 +152,20 @@ const Header = () => {
               Logout
             </button>
           ) : (
-            <Link
-              to="/login"
-              className="btn btn-secondary text-primary-content"
-            >
-              Sign In
-            </Link>
+            <div className="flex gap-2">
+              <Link
+                to="/register"
+                className="btn md:btn-md btn-sm btn-secondary btn-outline text-primary-content rounded-xl"
+              >
+                Sign Up
+              </Link>
+              <Link
+                to="/login"
+                className="btn md:btn-md btn-sm btn-secondary text-primary-content rounded-xl"
+              >
+                Sign In
+              </Link>
+            </div>
           )}
         </div>
       </div>
