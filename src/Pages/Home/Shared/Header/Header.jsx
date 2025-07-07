@@ -66,12 +66,28 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            <button
-              className="btn btn-outline btn-secondary text-primary-content"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+            <div className="flex justify-center items-center gap-2">
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full border-2 border-secondary">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={user?.photoURL}
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                className="btn btn-outline btn-secondary text-primary-content"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <div className="flex gap-2">
               <Link

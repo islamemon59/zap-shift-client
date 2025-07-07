@@ -83,7 +83,7 @@ const BangladeshMap = ({ districtData }) => {
         center={[23.685, 90.3563]} // Bangladesh center
         zoom={7}
         scrollWheelZoom={true}
-        className="w-full h-[500px] rounded-xl shadow-md border border-gray-300"
+        className="w-full h-[500px] rounded-xl shadow-md border border-gray-300 z-10"
       >
         <FlyToOnSearch search={search} districtData={districtData} />
         {/* Basic OpenStreetMap Tiles */}

@@ -41,6 +41,18 @@ const NavLinks = () => {
           Send Parcel
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `${
+              isActive && "bg-secondary rounded-3xl"
+            } font-semibold rounded-3xl`
+          }
+          to="/pricing"
+        >
+          Pricing
+        </NavLink>
+      </li>
 
       {user && !loading && (
         <>
@@ -81,18 +93,6 @@ const NavLinks = () => {
           to="/aboutUs/story"
         >
           About Us
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-secondary rounded-3xl"
-            } font-semibold rounded-3xl`
-          }
-          to="/pricing"
-        >
-          Pricing
         </NavLink>
       </li>
     </>

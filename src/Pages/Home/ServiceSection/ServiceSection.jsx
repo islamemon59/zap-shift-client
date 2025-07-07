@@ -45,7 +45,7 @@ const ServiceSection = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto p-6 md:p-25 bg-primary rounded-4xl -z-10">
+    <section className="mx-auto px-4 md:p-25 bg-primary rounded-4xl -z-10">
       {/* Section header */}
       <header className="text-center mb-12">
         <h2 className="text-3xl md:text-[40px] text-white font-extrabold">

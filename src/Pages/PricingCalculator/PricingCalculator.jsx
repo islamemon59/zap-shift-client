@@ -60,7 +60,7 @@ const PricingCalculator = () => {
   };
 
   return (
-    <div className="mx-auto p-6 md:p-20 bg-base-100 rounded-lg shadow mt-4 md:mt-10">
+    <div className="mx-auto max-w-7xl p-6 md:p-20 bg-base-100 rounded-lg shadow mt-4 md:mt-10">
       {/* Title & subtitle at top */}
       <div className="mb-8 text-center">
         <h2 className="text-3xl md:text-[36px] font-bold text-primary mb-2">

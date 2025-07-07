@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router";
 
 const AboutUs = () => {
   return (
-    <div className="mx-auto p-4 md:p-26 bg-base-100 rounded-xl shadow space-y-12">
+    <div className="mx-auto max-w-7xl p-4 md:p-26 bg-base-100 rounded-xl shadow space-y-12">
       <div>
         <h2 className="md:text-[56px] text-4xl font-bold mb-2 text-gray-800">
           About Us

@@ -39,7 +39,7 @@ const HowItWorks = () => {
   ];
   return (
     <div>
-      <section className="py-10 px-4 md:px-8 bg-base-100 text-start">
+      <section className="px-4 bg-base-100 text-start mt-6">
         <h2 className="text-3xl font-bold mb-10 text-primary-content">How it Works</h2>
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

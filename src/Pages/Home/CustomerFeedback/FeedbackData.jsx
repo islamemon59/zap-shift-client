@@ -1,9 +1,6 @@
 import React from "react";
 import {
   FaQuoteLeft,
-  FaUserAlt,
-  FaUserTie,
-  FaUserGraduate,
 } from "react-icons/fa";
 import FeedbackSlider from "./FeedbackSlider";
 import customer from "../../../assets/customer-top.png";
@@ -67,7 +64,7 @@ const FeedbackData = () => {
   ];
 
   return (
-    <section className="py-14 px-4 md:px-8 bg-base-100">
+    <section className="px-4 bg-base-100">
       {/* Section heading */}
       <div className="max-w-3xl mx-auto text-center mb-10 flex flex-col gap-8 items-center">
         <img className="w-64" src={customer} alt="customer.png" />

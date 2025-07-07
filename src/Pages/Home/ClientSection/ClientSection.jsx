@@ -20,7 +20,7 @@ export default function ClientsSection() {
     start_people1,
   ];
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
+    <section className="mx-auto px-4">
       <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-12 text-primary">
         We've helped thousands of sales teams
       </h2>

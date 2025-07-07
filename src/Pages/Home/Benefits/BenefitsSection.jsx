@@ -26,7 +26,7 @@ export default function BenefitsSection() {
   ];
   return (
     <section className="border-y-2 border-dashed border-gray-300 dark:border-gray-600">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="mx-auto px-4">
         {benefits.map((item) => (
           <BenefitCard key={item.id} item={item} />
         ))}

@@ -50,7 +50,7 @@ const BeARider = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-10 flex flex-col md:flex-row items-center justify-between">
+    <div className="min-h-screen max-w-7xl mx-auto  px-4 py-10 flex flex-col md:flex-row items-center justify-between">
       {/* Left: Title & Form */}
       <div className="md:w-1/2 space-y-6">
         <h2 className="text-4xl font-bold text-gray-800">Be a Rider</h2>

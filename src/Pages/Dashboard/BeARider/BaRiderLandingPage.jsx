@@ -7,7 +7,7 @@ import TopAgents from "./TopAgents";
 const BaRiderLandingPage = () => {
   const agents = useLoaderData();
   return (
-    <div className="space-y-14">
+    <div className="space-y-14 max-w-7xl mx-auto ">
       <section className="flex justify-center items-center flex-col text-center py-20 px-4 space-y-4 shadow-xl rounded-4xl mt-8">
         <img src={delivery} alt="delivery-man" />
 
