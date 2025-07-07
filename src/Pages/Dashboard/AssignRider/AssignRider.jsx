@@ -90,8 +90,8 @@ const AssignRider = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">
+    <div className="p-6 bg-white rounded-lg shadow-md max-w-6xl mx-auto mt-10">
+      <h2 className="text-4xl md:text-[56px] font-semibold mb-4 text-center">
         Assign Rider – Parcels Paid & Not Collected
       </h2>
 

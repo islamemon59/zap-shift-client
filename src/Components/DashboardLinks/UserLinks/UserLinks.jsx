@@ -6,14 +6,14 @@ const UserLinks = () => {
   return (
     <>
       <li>
-        <NavLink to="/dashboard/myParcel" className="flex items-center gap-2">
+        <NavLink to="/dashboard/myParcel" className="flex items-center gap-2 text-lg font-semibold">
           <FiPackage /> My Parcel
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/dashboard/paymentHistory"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-lg font-semibold"
         >
           <FiCreditCard /> Payment History
         </NavLink>
@@ -21,7 +21,7 @@ const UserLinks = () => {
       <li>
         <NavLink
           to="/dashboard/trackParcel"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-lg font-semibold"
         >
           <FiMapPin /> Track a Parcel
         </NavLink>

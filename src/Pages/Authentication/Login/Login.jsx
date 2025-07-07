@@ -1,31 +1,41 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import AuthHook from "../../../Hooks/AuthHook/AuthHook";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
-
+import toast from "react-hot-toast";
 const Login = () => {
-  const { signInUser } = AuthHook();
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location?.state || "/"
+  const { signInUser, resetPassword } = AuthHook();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
   console.log(location);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm();
 
   const onsubmit = (data) => {
-    console.log(data);
-
     signInUser(data.email, data.password)
       .then((res) => {
         console.log(res);
-        navigate(from)
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
+      });
+  };
+
+  const handleForgotPassword = () => {
+    const nameValue = getValues("email");
+
+    resetPassword(nameValue)
+      .then(() => {
+        toast.success("reset password email sent");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -71,7 +81,7 @@ const Login = () => {
                 Password must be at least 6 characters long
               </span>
             )}
-            <div>
+            <div onClick={handleForgotPassword}>
               <a className="link link-hover">Forgot password?</a>
             </div>
             <button className="btn btn-secondary text-primary-content mt-4">

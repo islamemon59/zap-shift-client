@@ -1,16 +1,8 @@
-import React from "react";
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../Pages/Home/Shared/ProFastLogo/ProFastLogo";
 import useUserRole from "../Hooks/useUserRole/useUserRole";
 import {
   FiHome,
-  FiPackage,
-  FiCreditCard,
-  FiMapPin,
-  FiUserCheck,
-  FiCheckCircle,
-  FiUsers,
-  FiUserPlus,
   FiEdit,
 } from "react-icons/fi";
 import Loader from "../Pages/Home/Shared/Loader/Loader";
@@ -21,8 +13,8 @@ import AdminLinks from "../Components/DashboardLinks/AdminLinks/AdminLinks";
 const DashBoardLayout = () => {
   const { role, isLoading } = useUserRole();
 
-  if(isLoading){
-    return <Loader/>
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -56,34 +48,36 @@ const DashBoardLayout = () => {
         <Outlet></Outlet>
       </div>
       <div className="drawer-side">
-        <label
-          htmlFor="my-drawer-2"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
         <aside className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <div className="lg:hidden mb-4 flex justify-end">
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-sm btn-circle btn-ghost"
+            >
+              ✕
+            </label>
+          </div>
           <ProFastLogo />
 
           <li>
-            <NavLink to="/" className="flex items-center gap-2">
+            <NavLink to="/" className="flex items-center gap-2 text-lg font-semibold">
               <FiHome /> Home
             </NavLink>
           </li>
 
-          {!isLoading && role === "user" && 
-            <UserLinks/>
-          }
+          {!isLoading && role === "user" && <UserLinks />}
 
-          {!isLoading && role === "rider" && <RiderLinks/>}
+          {!isLoading && role === "rider" && <RiderLinks />}
 
-          {!isLoading && role === "admin" && <AdminLinks/>}
+          {!isLoading && role === "admin" && <AdminLinks />}
 
           <li>
             <NavLink
               to="/dashboard/profile"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-lg font-semibold"
             >
-              <FiEdit />Profile
+              <FiEdit />
+              Profile
             </NavLink>
           </li>
         </aside>

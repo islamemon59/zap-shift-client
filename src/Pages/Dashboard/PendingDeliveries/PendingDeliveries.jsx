@@ -93,8 +93,8 @@ const PendingDeliveries = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow max-w-6xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">My Assigned Parcels</h2>
+    <div className="p-6 bg-white rounded-lg shadow max-w-6xl mx-auto mt-10">
+      <h2 className="text-4xl md:text-[56px] font-semibold mb-4 text-center">My Assigned Parcels</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead className="bg-gray-100">

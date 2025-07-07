@@ -86,8 +86,8 @@ const MyEarnings = () => {
   if (isLoading) return <Loader/>;
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow max-w-5xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6">📊 My Earnings</h2>
+    <div className="p-6 bg-white rounded-lg shadow max-w-5xl mx-auto mt-10">
+      <h2 className="text-4xl md:text-[56px] font-semibold mb-4 text-center">📊 My Earnings</h2>
 
       {/* Filter Buttons */}
       <div className="flex flex-wrap gap-2 mb-4">

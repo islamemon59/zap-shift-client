@@ -7,7 +7,11 @@ import Loader from "../../Home/Shared/Loader/Loader";
 const PendingRiders = () => {
   const axiosSecure = UseAxiosSecure();
 
-  const { data: riders = [], refetch, isLoading } = useQuery({
+  const {
+    data: riders = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["Pending-Rider"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allRiders");
@@ -41,7 +45,9 @@ const PendingRiders = () => {
 
       Swal.fire({
         icon: "success",
-        title: `Request ${status}${status === "cancelled" ? " cancelled" : " active"}`,
+        title: `Request ${status}${
+          status === "cancelled" ? " cancelled" : " active"
+        }`,
         timer: 1500,
         showConfirmButton: false,
       });
@@ -58,8 +64,8 @@ const PendingRiders = () => {
 
   return (
     <>
-      <div className="p-6 bg-white rounded-lg shadow-md max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">
+      <div className="p-6 bg-white rounded-lg shadow-md max-w-5xl mx-auto mt-10">
+        <h2 className="text-4xl md:text-[56px] font-semibold mb-4 text-center">
           Pending Rider Requests
         </h2>
         <div className="overflow-x-auto">
@@ -126,14 +132,18 @@ const PendingRiders = () => {
                         Details
                       </button>
                       <button
-                        onClick={() => handleStatusChange(rider._id, "active", rider?.email)}
+                        onClick={() =>
+                          handleStatusChange(rider._id, "active", rider?.email)
+                        }
                         className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-sm font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition"
                         aria-label={`Accept request from ${rider.name}`}
                       >
                         Accept
                       </button>
                       <button
-                        onClick={() => handleStatusChange(rider._id, "cancelled")}
+                        onClick={() =>
+                          handleStatusChange(rider._id, "cancelled")
+                        }
                         className="inline-flex items-center px-3 py-1.5 bg-red-600 text-white text-sm font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition"
                         aria-label={`Cancel request from ${rider.name}`}
                       >
